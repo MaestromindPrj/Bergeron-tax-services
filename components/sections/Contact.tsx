@@ -139,13 +139,9 @@ export const Contact: React.FC = () => {
         {/* Two-Column Grid: Left Form, Right Image */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
           {/* Left Column: Contact Form in Deep Blue Card */}
-          <motion.div
+          <div
             id="contact-form"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-6 bg-[#071D49] text-white rounded-2xl p-8 sm:p-10 border border-navy/20 shadow-xl flex flex-col justify-between scroll-mt-28"
+            className="lg:col-span-6 bg-[#071D49] text-white rounded-2xl p-6 sm:p-8 md:p-10 border border-navy/20 shadow-xl flex flex-col justify-between scroll-mt-28"
           >
             {isSubmitted ? (
               <div className="py-6 text-center">
@@ -295,18 +291,12 @@ export const Contact: React.FC = () => {
                 </div>
               </form>
             )}
-          </motion.div>
+          </div>
 
           {/* Right Column: Professional Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-6 flex flex-col"
-          >
+          <div className="lg:col-span-6 flex flex-col">
             {/* Consultation Photo */}
-            <div className="relative aspect-[4/3] lg:aspect-auto w-full h-full min-h-[380px] lg:min-h-[460px] rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-100">
+            <div className="relative aspect-[4/3] lg:aspect-auto w-full h-full min-h-[260px] sm:min-h-[340px] lg:min-h-[460px] rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-100">
               <Image
                 src="/images/contact-consultation.jpg"
                 alt="Tax consultation review meeting"
@@ -315,7 +305,7 @@ export const Contact: React.FC = () => {
                 className="object-cover"
               />
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

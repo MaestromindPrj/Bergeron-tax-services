@@ -54,13 +54,13 @@ export const Hero: React.FC = () => {
               Are you self-employed or a small-business owner dealing with unfiled tax returns, IRS notices, or unpaid tax liabilities?
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 mb-5">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-5">
               <Button
                 href="/#contact-form"
                 onClick={scrollToContactForm}
                 variant="gold"
                 size="lg"
-                className="!bg-gold hover:!bg-gold-hover text-navy font-bold rounded-full shadow-md hover:shadow-gold-glow transition-all px-7"
+                className="w-full sm:w-auto !bg-gold hover:!bg-gold-hover text-navy font-bold rounded-full shadow-md hover:shadow-gold-glow transition-all px-7 text-center justify-center"
               >
                 Request a Consultation
               </Button>
@@ -68,7 +68,7 @@ export const Hero: React.FC = () => {
                 href="#services"
                 variant="outline"
                 size="lg"
-                className="bg-white/5 hover:bg-white/10 text-white border-white/20 rounded-full font-medium px-7"
+                className="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white border-white/20 rounded-full font-medium px-7 text-center justify-center"
               >
                 Explore Our Services
               </Button>
@@ -101,7 +101,7 @@ export const Hero: React.FC = () => {
               {/* Floating Bottom Card with Differential Foreground Parallax */}
               <motion.div
                 style={{ y: yHeroBadge }}
-                className="absolute -bottom-6 -left-4 sm:left-4 right-4 sm:right-auto bg-white rounded-xl shadow-xl p-4 sm:p-5 border border-slate-100 max-w-xs transform-gpu z-20"
+                className="absolute -bottom-6 left-3 right-3 sm:left-4 sm:right-auto bg-white rounded-xl shadow-xl p-4 sm:p-5 border border-slate-100 sm:max-w-xs transform-gpu z-20"
               >
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-xl bg-[#071D49] border border-navy/20 text-gold flex items-center justify-center flex-shrink-0 shadow-sm">
