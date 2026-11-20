@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { Calendar, Clock, ShieldCheck, ExternalLink, X } from "lucide-react";
-import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/config";
 import { Button } from "@/components/ui/Button";
 import { scrollToContactForm } from "@/lib/utils";
@@ -13,11 +12,7 @@ export const Consultation: React.FC = () => {
   return (
     <section className="bg-gradient-to-b from-[#071D49] to-[#0d2250] text-white py-16 border-t border-b border-white/10 relative overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <div
           className="bg-white/5 border border-white/10 rounded-3xl p-8 sm:p-12 backdrop-blur-sm flex flex-col md:flex-row items-center justify-between gap-8"
         >
           <div className="max-w-2xl">
@@ -45,16 +40,13 @@ export const Consultation: React.FC = () => {
               Request a Consultation
             </Button>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Google Calendar Presentation Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy/80 backdrop-blur-md">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
+          <div
             className="bg-white text-darkSlate rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200"
           >
             <button
@@ -104,7 +96,7 @@ export const Consultation: React.FC = () => {
                 Close Preview
               </button>
             </div>
-          </motion.div>
+          </div>
         </div>
       )}
     </section>

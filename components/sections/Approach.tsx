@@ -2,7 +2,6 @@
 
 import React from "react";
 import { UserCheck, MessageSquare, LineChart } from "lucide-react";
-import { motion } from "framer-motion";
 
 export const Approach: React.FC = () => {
   const cards = [
@@ -74,9 +73,7 @@ export const Approach: React.FC = () => {
         </div>
 
         {/* Bottom Support Banner */}
-        <div
-          className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-100 shadow-md flex flex-col md:flex-row items-start md:items-center gap-5 text-darkSlate"
-        >
+        <div className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-100 shadow-md flex flex-col md:flex-row items-start md:items-center gap-5 text-darkSlate">
           <div className="flex-shrink-0">
             <span className="inline-block bg-navy text-gold text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full border border-navy-light">
               SUPPORT THAT CONTINUES

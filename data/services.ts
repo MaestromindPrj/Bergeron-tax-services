@@ -49,24 +49,28 @@ export const RESOLUTION_PROCESS_DATA = [
     title: "Assessment",
     description:
       "I start with a free, confidential consultation to review your tax situation. I'll help you understand your position and identify the best path forward.",
+    iconName: "FileSearch",
   },
   {
     step: "02",
     title: "Strategy Formulation",
     description:
       "Following your initial consultation, I secure your complete IRS file. I meticulously review your tax matters to formulate a tailored strategy designed to secure the most favorable resolution for your case.",
+    iconName: "Target",
   },
   {
     step: "03",
     title: "Strategic Negotiation & Resolution Execution",
     description:
       "I negotiate directly with the taxing authorities on your behalf. I handle all communications, filings, and deadlines so you don't have to.",
+    iconName: "Scale",
   },
   {
     step: "04",
     title: "Tax Relief",
     description:
       "Once resolved, you'll have a clear path forward. Depending on your situation, this may mean lower payments, reduced debt, or full resolution — a fresh start.",
+    iconName: "ShieldCheck",
   },
 ];
 

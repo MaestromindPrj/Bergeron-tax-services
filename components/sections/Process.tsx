@@ -8,11 +8,11 @@ export const Process: React.FC = () => {
   return (
     <section
       id="process"
-      className="py-20 md:py-28 bg-[#F4F5F7] text-darkSlate"
+      className="py-20 md:py-28 bg-white text-darkSlate relative overflow-hidden"
     >
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="max-w-2xl mb-14 md:mb-16">
+        <div className="max-w-2xl mb-12 md:mb-14">
           <span className="text-xs md:text-sm font-bold tracking-[0.2em] text-gold-deep uppercase block mb-3">
             YOUR PATH TO RESOLUTION
           </span>
@@ -20,7 +20,7 @@ export const Process: React.FC = () => {
             A Clear Path Forward.
           </h2>
           <p className="text-secondaryText text-sm sm:text-base leading-relaxed">
-            Every tax situation is different. My process is designed to help you understand your options and move towards an appropriate resolution.
+            Every tax situation is different. My process is designed to give you clarity, advocate on your behalf with taxing authorities, and guide you towards complete resolution.
           </p>
         </div>
 
@@ -32,6 +32,7 @@ export const Process: React.FC = () => {
               step={item.step}
               title={item.title}
               description={item.description}
+              iconName={item.iconName}
               index={index}
             />
           ))}

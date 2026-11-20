@@ -1,37 +1,21 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { ShieldCheck, CheckCircle2 } from "lucide-react";
 import { scrollToContactForm } from "@/lib/utils";
 
 export const Hero: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  // Direct GPU-composited parallax (0 CPU physics solver overhead)
-  const yHeroText = useTransform(scrollYProgress, [0, 1], [0, 45]);
-  const yHeroImage = useTransform(scrollYProgress, [0, 1], [0, -35]);
-  const yHeroBadge = useTransform(scrollYProgress, [0, 1], [0, -65]);
-
   return (
     <section
-      ref={sectionRef}
       id="home"
       className="relative bg-[#071D49] pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden text-white"
     >
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Copy & Actions with smooth parallax */}
-          <motion.div
-            style={{ y: yHeroText }}
-            className="lg:col-span-7 transform-gpu"
-          >
+          {/* Left Column: Copy & Actions */}
+          <div className="lg:col-span-7">
             <div className="inline-block mb-4">
               <span className="text-xs md:text-sm font-bold tracking-[0.2em] text-gold uppercase">
                 TAX RESOLUTION SPECIALISTS
@@ -78,14 +62,11 @@ export const Hero: React.FC = () => {
               <CheckCircle2 className="w-4 h-4 text-gold flex-shrink-0" />
               <span>Free, confidential initial consultation</span>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right Column: Hero Image with Layered Parallax */}
+          {/* Right Column: Hero Image */}
           <div className="lg:col-span-5 relative">
-            <motion.div
-              style={{ y: yHeroImage }}
-              className="relative mx-auto max-w-md lg:max-w-none transform-gpu"
-            >
+            <div className="relative mx-auto max-w-md lg:max-w-none">
               {/* Main photo card with clean border and no background shadow */}
               <div className="relative aspect-[4/5] w-full rounded-2xl md:rounded-3xl overflow-hidden border border-white/20 bg-navy-card">
                 <Image
@@ -98,11 +79,8 @@ export const Hero: React.FC = () => {
                 />
               </div>
 
-              {/* Floating Bottom Card with Differential Foreground Parallax */}
-              <motion.div
-                style={{ y: yHeroBadge }}
-                className="absolute -bottom-6 left-3 right-3 sm:left-4 sm:right-auto bg-white rounded-xl shadow-xl p-4 sm:p-5 border border-slate-100 sm:max-w-xs transform-gpu z-20"
-              >
+              {/* Floating Bottom Card */}
+              <div className="absolute -bottom-6 left-3 right-3 sm:left-4 sm:right-auto bg-white rounded-xl shadow-xl p-4 sm:p-5 border border-slate-100 sm:max-w-xs z-20">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-xl bg-[#071D49] border border-navy/20 text-gold flex items-center justify-center flex-shrink-0 shadow-sm">
                     <ShieldCheck className="w-5 h-5 stroke-[1.75]" />
@@ -118,8 +96,8 @@ export const Hero: React.FC = () => {
                     </p>
                   </div>
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

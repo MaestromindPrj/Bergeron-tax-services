@@ -10,7 +10,6 @@ import {
   ArrowRight,
   LucideIcon,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import { scrollToContactForm } from "@/lib/utils";
 
 const iconMap: Record<string, LucideIcon> = {

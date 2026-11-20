@@ -10,8 +10,8 @@ export const SITE_CONFIG = {
   ownerTitle: "Experienced Tax Professional & Resolution Specialist",
   experienceStartYear: 2012,
   copyrightYear: 2026,
-  // Configurable placeholder for Google Calendar / booking URL
-  schedulingUrl: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0placeholder",
+  // Configurable Calendly booking URL
+  schedulingUrl: "https://calendly.com/brucebergeron29",
   navLinks: [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },

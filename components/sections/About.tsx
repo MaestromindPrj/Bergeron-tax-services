@@ -1,24 +1,12 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { Quote } from "lucide-react";
 
 export const About: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  // Direct GPU parallax (0 CPU physics solver overhead)
-  const yPortrait = useTransform(scrollYProgress, [0, 1], [25, -25]);
-  const yQuote = useTransform(scrollYProgress, [0, 1], [35, -20]);
-
   return (
     <section
-      ref={sectionRef}
       id="about"
       className="relative py-20 md:py-28 bg-white text-darkSlate overflow-hidden"
     >
@@ -63,12 +51,9 @@ export const About: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Portrait and Callout Card with Parallax Depth */}
+          {/* Right Column: Portrait and Callout Card */}
           <div className="lg:col-span-5 flex flex-col gap-6">
-            <motion.div
-              style={{ y: yPortrait }}
-              className="relative aspect-square w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-100 transform-gpu"
-            >
+            <div className="relative aspect-square w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-100">
               <Image
                 src="/assets/images/about-portrait.jpg"
                 alt="Bruce Bergeron - Experienced Tax Professional"
@@ -76,13 +61,10 @@ export const About: React.FC = () => {
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
               />
-            </motion.div>
+            </div>
 
-            {/* Quote Card with Differential Parallax Float */}
-            <motion.div
-              style={{ y: yQuote }}
-              className="bg-[#071D49] text-white border border-white/10 rounded-2xl p-6 relative shadow-xl transform-gpu"
-            >
+            {/* Quote Card */}
+            <div className="bg-[#071D49] text-white border border-white/10 rounded-2xl p-6 relative shadow-xl">
               <div className="w-10 h-10 rounded-xl bg-gold/15 border border-gold/40 text-gold flex items-center justify-center mb-3 shadow-sm">
                 <Quote className="w-5 h-5 stroke-[1.75]" />
               </div>
@@ -92,53 +74,46 @@ export const About: React.FC = () => {
               <p className="text-slate-300 text-sm italic leading-relaxed">
                 &ldquo;My mission is to make tax preparation less stressful, provide clients with peace of mind.&rdquo;
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
 
         {/* Bottom Three Highlights */}
         <div className="mt-16 pt-12 border-t border-slate-100 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex items-start gap-4">
-            <span className="font-mono text-xs font-bold text-gold-deep bg-gold/10 px-2.5 py-1 rounded">
-              01
-            </span>
-            <div>
-              <h4 className="text-navy font-bold text-base leading-snug">
-                Tax Professional Since 2012
-              </h4>
-              <p className="text-secondaryText text-xs mt-1">
-                Over a decade of dedicated taxation and resolution experience.
-              </p>
+          {[
+            {
+              num: "01",
+              title: "Tax Professional Since 2012",
+              desc: "Over a decade of dedicated taxation and resolution experience.",
+            },
+            {
+              num: "02",
+              title: "Tax Preparation & Resolution",
+              desc: "Comprehensive compliance and strategic back-tax relief.",
+            },
+            {
+              num: "03",
+              title: "IRS & State Tax Representation",
+              desc: "Direct advocacy and audit defense before taxing authorities.",
+            },
+          ].map((item) => (
+            <div
+              key={item.num}
+              className="flex items-start gap-4"
+            >
+              <span className="font-mono text-xs font-bold text-gold-deep bg-gold/10 px-2.5 py-1 rounded">
+                {item.num}
+              </span>
+              <div>
+                <h4 className="text-navy font-bold text-base leading-snug">
+                  {item.title}
+                </h4>
+                <p className="text-secondaryText text-xs mt-1">
+                  {item.desc}
+                </p>
+              </div>
             </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <span className="font-mono text-xs font-bold text-gold-deep bg-gold/10 px-2.5 py-1 rounded">
-              02
-            </span>
-            <div>
-              <h4 className="text-navy font-bold text-base leading-snug">
-                Tax Preparation &amp; Resolution
-              </h4>
-              <p className="text-secondaryText text-xs mt-1">
-                Comprehensive compliance and strategic back-tax relief.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <span className="font-mono text-xs font-bold text-gold-deep bg-gold/10 px-2.5 py-1 rounded">
-              03
-            </span>
-            <div>
-              <h4 className="text-navy font-bold text-base leading-snug">
-                IRS &amp; State Tax Representation
-              </h4>
-              <p className="text-secondaryText text-xs mt-1">
-                Direct advocacy and audit defense before taxing authorities.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

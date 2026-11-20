@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Clock, Calendar } from "lucide-react";
-import { motion } from "framer-motion";
 import { BlogPost } from "@/data/blog";
 
 interface FeaturedBlogCardProps {
