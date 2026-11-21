@@ -68,6 +68,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="font-sans">
+      <head>
+        <link rel="preconnect" href="https://calendly.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://calendly.com" />
+        <link rel="dns-prefetch" href="https://assets.calendly.com" />
+      </head>
       <body className="min-h-screen bg-white text-darkSlate font-sans antialiased selection:bg-gold/30 selection:text-navy">
         <SmoothScroll>{children}</SmoothScroll>
       </body>

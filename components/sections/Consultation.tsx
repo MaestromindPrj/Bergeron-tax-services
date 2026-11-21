@@ -3,11 +3,18 @@
 import React, { useState } from "react";
 import { Calendar, Clock, ShieldCheck, ExternalLink, X } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/Button";
 import { scrollToContactForm } from "@/lib/utils";
 
+const CalendlyModal = dynamic(
+  () => import("@/components/ui/CalendlyModal").then((mod) => mod.CalendlyModal),
+  { ssr: false }
+);
+
 export const Consultation: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
 
   return (
     <section className="bg-gradient-to-b from-[#071D49] to-[#0d2250] text-white py-16 border-t border-b border-white/10 relative overflow-hidden">
@@ -80,15 +87,17 @@ export const Consultation: React.FC = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <a
-                href={SITE_CONFIG.schedulingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto flex-1 inline-flex items-center justify-center px-6 py-3 rounded-full bg-gold hover:bg-gold-hover text-navy font-bold text-sm shadow-sm transition-colors gap-2"
+              <button
+                type="button"
+                onClick={() => {
+                  setShowModal(false);
+                  setIsCalendlyOpen(true);
+                }}
+                className="w-full sm:w-auto flex-1 inline-flex items-center justify-center px-6 py-3 rounded-full bg-gold hover:bg-gold-hover text-navy font-bold text-sm shadow-sm transition-colors gap-2 cursor-pointer"
               >
-                Open Google Calendar
-                <ExternalLink className="w-4 h-4" />
-              </a>
+                Open Scheduling Calendar
+                <Calendar className="w-4 h-4" />
+              </button>
               <button
                 onClick={() => setShowModal(false)}
                 className="w-full sm:w-auto px-6 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-darkSlate font-semibold text-sm transition-colors"
@@ -99,6 +108,12 @@ export const Consultation: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Calendly Booking Modal Overlay */}
+      <CalendlyModal
+        isOpen={isCalendlyOpen}
+        onClose={() => setIsCalendlyOpen(false)}
+      />
     </section>
   );
 };

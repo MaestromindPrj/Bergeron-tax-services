@@ -14,8 +14,14 @@ import {
   Phone,
   Sparkles,
 } from "lucide-react";
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/lib/config";
+
+const CalendlyModal = dynamic(
+  () => import("@/components/ui/CalendlyModal").then((mod) => mod.CalendlyModal),
+  { ssr: false }
+);
 
 interface FormData {
   fullName: string;
@@ -40,12 +46,15 @@ export const Contact: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
 
   React.useEffect(() => {
     const handleHash = () => {
       if (typeof window !== "undefined") {
         const hash = window.location.hash;
-        if (hash === "#contact" || hash === "#contact-form") {
+        if (hash === "#calendly" || hash === "#schedule") {
+          setIsCalendlyOpen(true);
+        } else if (hash === "#contact" || hash === "#contact-form") {
           setTimeout(() => {
             const formCard =
               document.getElementById("contact-form") ||
@@ -62,9 +71,15 @@ export const Contact: React.FC = () => {
       }
     };
 
+    const handleCustomOpen = () => setIsCalendlyOpen(true);
+
     handleHash();
     window.addEventListener("hashchange", handleHash);
-    return () => window.removeEventListener("hashchange", handleHash);
+    window.addEventListener("open-calendly", handleCustomOpen);
+    return () => {
+      window.removeEventListener("hashchange", handleHash);
+      window.removeEventListener("open-calendly", handleCustomOpen);
+    };
   }, []);
 
   const validate = (): boolean => {
@@ -227,21 +242,19 @@ export const Contact: React.FC = () => {
               </div>
             </div>
 
-            {/* Calendly Action Button */}
+            {/* Calendly Action Button - Opens Modal Overlay */}
             <div className="pt-2">
-              <a
-                href={SITE_CONFIG.schedulingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#071D49] hover:bg-navy-light text-white font-bold text-sm sm:text-base transition-colors active:scale-[0.99] group/btn shadow-md"
+              <button
+                type="button"
+                onClick={() => setIsCalendlyOpen(true)}
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#071D49] hover:bg-navy-light text-white font-bold text-sm sm:text-base transition-colors active:scale-[0.99] group/btn shadow-md cursor-pointer"
               >
                 <Calendar className="w-5 h-5 text-gold" />
                 <span>Select a Time</span>
-                <ExternalLink className="w-4 h-4 text-gold transition-transform group-hover/btn:translate-x-0.5" />
-              </a>
+              </button>
 
               <p className="text-center text-xs text-navy/80 mt-3 font-medium">
-                Free initial review • Live availability updated in real-time
+                Free initial review • Live calendar modal overlay
               </p>
             </div>
           </div>
@@ -422,6 +435,12 @@ export const Contact: React.FC = () => {
 
         </div>
       </div>
+
+      {/* Calendly Booking Modal Overlay */}
+      <CalendlyModal
+        isOpen={isCalendlyOpen}
+        onClose={() => setIsCalendlyOpen(false)}
+      />
     </section>
   );
 };
